@@ -9,10 +9,12 @@ export class TodoListComponent implements OnInit {
 
    todos: object[];
    todoTitle : string;
+   idCounter : number;
 
   constructor() { }
 
   ngOnInit() {
+    this.idCounter = 4;
     this.todoTitle = '';
     this.todos = [
       {
@@ -34,6 +36,23 @@ export class TodoListComponent implements OnInit {
         'editing': false,
       },
     ];
+  }
+
+  addTodo() {
+
+    if(this.todoTitle.trim().length === 0){
+      return;
+    }
+
+    this.todos.push({
+      'id': this.idCounter,
+      'title': this.todoTitle,
+      'completed': false,
+      'editing': false
+    })
+
+    this.todoTitle = "";
+    this.idCounter++;
   }
 
 }
